@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Gilroy";
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: black;
+    color: rgb(248, 247, 247);
+    padding: 30px;
+    
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+main{
+    width: 100%;
+    height: 100%;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.table-box{
+    width: 100%;
+    height: 100%;
+}
+.task-btn{
+    padding: 7px;
+    border: none;
+    background-color: #9cc45cd5;
+    border-radius: 12px;
+}
+.modal{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.modal.active{
+    display: flex;
+}
+
+#form{
+    border: none;
+    background-color: rgba(82, 82, 83, 0.801);
+}
+.modal .center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(47, 48, 49, 0.644);
+    border: 1px solid rgba(128, 128, 128, 0.808);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.modal .center input select{
+    border: none;
+    margin: 4px;
+}
+.modal .center .add-btn{
+    padding: 5px 15px;
+    background-color: #3a879e;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.modal .bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(61, 61, 61, 0.404);
+    backdrop-filter: blur(5px);
+}
+
+table{
+    border-collapse: collapse;
+    margin: 40px auto;
+}
+th, td{
+    border: 2px solid grey;
+    padding: 20px;
+    text-align: center;
+}
+
+.del-btn{
+    background-color: rgb(226, 50, 50);
+    border: none;
+    padding: 5px;
+    border-radius: 9px;
+}
