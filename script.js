@@ -23,9 +23,9 @@ function newDiv(){
     let actionButton = document.createElement("button")
     actionButton.innerText = "Delete";
     actionButton.className = "del-btn";
-    actionButton.onclick = function(){
-        alert("Button in the new row clicked!");
-    };
+    actionButton.addEventListener("click", () =>{
+        newRow.remove();
+    });
  
 
     cell1.textContent = titleInput.value.trim();
