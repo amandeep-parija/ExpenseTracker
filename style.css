@@ -88,16 +88,46 @@ main{
 table{
     border-collapse: collapse;
     margin: 40px auto;
+    width: 100%;
 }
 th, td{
     border: 2px solid grey;
     padding: 20px;
     text-align: center;
 }
+/* thead th{
+    position: sticky;
+    top: 0;
+    background-color: rgb(43, 31, 31);
+    z-index: 10;
+} */
 
 .del-btn{
     background-color: rgb(226, 50, 50);
     border: none;
-    padding: 5px;
+    padding: 6px;
     border-radius: 9px;
+}
+
+.outer-table{
+    border: 3px solid rgb(231, 141, 141);
+    height: 700px;
+    padding: 0 20px;
+    width: fit-content;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-sizing: border-box;
+    /* background-color: #c4dee6; */
+}
+.table-box{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+.t-head{
+    position: sticky;
+    top: 0;
+    background-color: rgb(43, 31, 31);
+    /* z-index: 10; */
 }
