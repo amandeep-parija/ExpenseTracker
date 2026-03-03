@@ -8,8 +8,10 @@ let titleAmount  = document.querySelector("#task-amnt-input");
 let categorySelect = document.querySelector("select");
 let table = document.querySelector("table")
 
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-function newDiv(){
+
+function newDiv(id,title,amount,category){
 
     let newRow = document.createElement("tr");
 
@@ -17,7 +19,6 @@ function newDiv(){
     let cell2 = document.createElement("td");
     let cell3 = document.createElement("td");
     let cell4 = document.createElement("td");
-
     let cell5 = document.createElement("td");
 
     let actionButton = document.createElement("button")
@@ -25,13 +26,17 @@ function newDiv(){
     actionButton.className = "del-btn";
     actionButton.addEventListener("click", () =>{
         newRow.remove();
-    });
- 
 
-    cell1.textContent = titleInput.value.trim();
-    cell2.textContent = titleAmount.value.trim();
-    cell3.textContent = categorySelect.value;
-    cell4.textContent = titleAmount.value.trim();
+        expenses = expenses.filter(exp => exp.id !== id);
+        localStorage.setItem("expenses",JSON.stringify(expenses));
+    });
+
+    
+
+    cell1.textContent = title;
+    cell2.textContent = amount;
+    cell3.textContent = category;
+    cell4.textContent = amount;
 
     cell5.appendChild(actionButton);
 
@@ -43,7 +48,7 @@ function newDiv(){
     newRow.appendChild(cell5);
 
 
-    table.appendChild(newRow)
+    table.querySelector("tbody").appendChild(newRow);
 }
 
 
@@ -64,13 +69,29 @@ form.addEventListener("submit", function(e){
     let amount = titleAmount.value.trim();
     let select = categorySelect.value;
 
+    if(!input || !amount || !select) return;
+
+    let newExpense = {
+        id: Date.now(),
+        title: input,
+        amount: amount,
+        category: select
+    };
+
+    expenses.push(newExpense);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+
+    newDiv(newExpense.id, input, amount, select);
+
     
-    // console.log(input, amount, select)
     modal.classList.remove("active");
 
+    form.reset();
 
-    newDiv()
     
 })
 
 
+expenses.forEach(exp => {
+    newDiv(exp.id, exp.title, exp.amount, exp.category)
+});
