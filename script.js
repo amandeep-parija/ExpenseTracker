@@ -10,6 +10,9 @@ let table = document.querySelector("table")
 
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
+let runningTotal = 0;
+
+
 
 function newDiv(id,title,amount,category){
 
@@ -36,7 +39,9 @@ function newDiv(id,title,amount,category){
     cell1.textContent = title;
     cell2.textContent = amount;
     cell3.textContent = category;
-    cell4.textContent = amount;
+
+    runningTotal += Number(amount);
+    cell4.textContent = runningTotal;
 
     cell5.appendChild(actionButton);
 
@@ -74,7 +79,7 @@ form.addEventListener("submit", function(e){
     let newExpense = {
         id: Date.now(),
         title: input,
-        amount: amount,
+        amount: Number(amount),
         category: select
     };
 
@@ -83,7 +88,7 @@ form.addEventListener("submit", function(e){
 
     newDiv(newExpense.id, input, amount, select);
 
-    
+
     modal.classList.remove("active");
 
     form.reset();
@@ -91,6 +96,7 @@ form.addEventListener("submit", function(e){
     
 })
 
+runningTotal = 0;
 
 expenses.forEach(exp => {
     newDiv(exp.id, exp.title, exp.amount, exp.category)
