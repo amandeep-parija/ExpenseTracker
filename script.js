@@ -28,10 +28,16 @@ function newDiv(id,title,amount,category){
     actionButton.innerText = "Delete";
     actionButton.className = "del-btn";
     actionButton.addEventListener("click", () =>{
-        newRow.remove();
 
         expenses = expenses.filter(exp => exp.id !== id);
         localStorage.setItem("expenses",JSON.stringify(expenses));
+
+        runningTotal = 0;
+        table.querySelector("tbody").innerHTML = "";
+
+        expenses.forEach(exp => {
+            newDiv(exp.id, exp.title, exp.amount, exp.category)
+        });
     });
 
     
@@ -96,8 +102,8 @@ form.addEventListener("submit", function(e){
     
 })
 
-runningTotal = 0;
 
+runningTotal = 0;
 expenses.forEach(exp => {
     newDiv(exp.id, exp.title, exp.amount, exp.category)
 });
